@@ -72,7 +72,110 @@
                     <p>שקיפות מלאה. זה מה שכלול:</p>
                 </div>
 
-                <form id="orderForm" onsubmit="handleFormSubmit(event)" enctype="multipart/form-data">
+                <form id="orderForm" onsubmit="handleFormSubmit(event)" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" id="subject-line" name="_subject" value="הזמנה חדשה - ממתין לתשלום">
+                    <input type="hidden" id="next-redirect" name="_next" value="">
+
+                    <div class="product-grid">
+                        <label class="product-card">
+                            <input type="radio" name="חבילה" value="סרטון בודד" checked 
+                                   onclick="updatePackage('https://mrng.to/0DsnnsFXuu', false)">
+                            <div class="card-content">
+                                <span class="product-name">Single</span>
+                                <span class="product-desc">סרטון אחד<br>ערוך ומדויק</span>
+                                <span class="product-price">₪75</span>
+                            </div>
+                        </label>
+
+                        <label class="product-card featured">
+                            <input type="radio" name="חבילה" value="חבילת בסיס" 
+                                   onclick="updatePackage('https://mrng.to/5ZQSfIDuIn', false)">
+                            <div class="card-content">
+                                <span class="tag">מומלץ</span>
+                                <span class="product-name">Basic Pack</span>
+                                <span class="product-desc" id="desc-basic">5 סרטונים<br>(40₪ לסרטון)</span>
+                                <span class="product-price">₪200</span>
+                            </div>
+                        </label>
+
+                        <label class="product-card">
+cat <<EOF > index.html
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cut - העורך האישי שלך</title>
+    
+    <meta property="og:title" content="Cut - העורך האישי שלך">
+    <meta property="og:description" content="לתת לתוכן שלך את הבמה שמגיעה לו. עריכת וידאו מקצועית ב-24 שעות.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:url" content="https://cut.vercel.app">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="glass-nav">
+        <div class="container nav-flex">
+            <div class="brand-nav">Cut</div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-brand-wrapper">
+                <div class="snake-border">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="hero-brand-mark">Cut</div>
+            </div>
+            
+            <h1 class="hero-title">
+                לתת לתוכן שלך <br>
+                <span class="gradient-text">את הבמה שמגיעה לו</span>
+            </h1>
+            <p class="hero-subtitle">
+                העורך האישי שלך. מדויק. מהיר. פרימיום.<br>
+                הפוך את חומרי הגלם שלך לנוכחות דיגיטלית שאי אפשר להתעלם ממנה.
+            </p>
+        </div>
+    </section>
+
+    <section class="workflow-section">
+        <div class="container">
+            <div class="grid-3">
+                <div class="flow-card">
+                    <span class="step-num">01</span>
+                    <h3>העלאה</h3>
+                    <p>שולחים קישור לדרייב או ליוטיוב.</p>
+                </div>
+                <div class="flow-card">
+                    <span class="step-num">02</span>
+                    <h3>ליטוש AI</h3>
+                    <p>האלגוריתם והעורכים שלנו יוצרים קסם.</p>
+                </div>
+                <div class="flow-card">
+                    <span class="step-num">03</span>
+                    <h3>תוצאה</h3>
+                    <p>תוך 24 שעות הסרטון אצלך.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="action-section">
+        <div class="container">
+            <div class="form-wrapper">
+                <div class="form-header">
+                    <h2>התאם את החבילה שלך</h2>
+                    <p>שקיפות מלאה. זה מה שכלול:</p>
+                </div>
+
+                <form id="orderForm" onsubmit="handleFormSubmit(event)" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" id="subject-line" name="_subject" value="הזמנה חדשה - ממתין לתשלום">
                     <input type="hidden" id="next-redirect" name="_next" value="">
@@ -135,7 +238,8 @@
                         <div class="field-group hidden fade-in" id="logo-area">
                             <label class="highlight">העלאת לוגו (עבור חבילת Pro Max)</label>
                             <div class="file-drop">
-                                <input type="file" id="logo-input" name="לוגו">
+                                <input type="file" id="logo-input" name="brand_logo" accept="image/png, image/jpeg, image/svg+xml">
+                                <p class="micro-copy" style="margin-top:5px;">קבצי תמונה בלבד (עד 25MB)</p>
                             </div>
                         </div>
 
@@ -195,8 +299,6 @@
         let currentPaymentUrl = 'https://mrng.to/0DsnnsFXuu';
         let isFreeMode = false;
         
-        // תיקון קריטי: זיהוי אוטומטי של כתובת האתר הנוכחית
-        // זה יחזיר משהו כמו https://cut-ngfe...vercel.app/thankyou.html
         const thankYouPage = window.location.origin + '/thankyou.html';
         const formAction = 'https://formsubmit.co/elazar12321@gmail.com';
 
@@ -211,6 +313,7 @@
             } else {
                 logoArea.classList.add('hidden');
                 logoInput.required = false;
+                logoInput.value = ''; // ניקוי אם מחליפים חבילה
             }
         }
 
@@ -258,14 +361,13 @@
 
             if (isFreeMode) {
                 subjectInput.value = "הזמנה חדשה - חינם (קופון מפתח)";
-                redirectInput.value = thankYouPage; // הולך לכתובת הדינמית
+                redirectInput.value = thankYouPage;
             } else {
                 subjectInput.value = "הזמנה חדשה - ממתין לאישור תשלום";
                 redirectInput.value = currentPaymentUrl;
             }
 
             form.action = formAction;
-            form.method = "POST";
             form.submit();
         }
     </script>

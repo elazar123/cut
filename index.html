@@ -72,15 +72,16 @@
                     <p>שקיפות מלאה. זה מה שכלול:</p>
                 </div>
 
-                <form id="orderForm" action="https://formsubmit.co/elazar12321@gmail.com" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_subject" value="הזמנה חדשה - Cut Premium">
+                <form id="orderForm" onsubmit="handleFormSubmit(event)" enctype="multipart/form-data">
+                    
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" id="redirect-url" name="_next" value="https://cut.vercel.app/thankyou.html"> 
+                    <input type="hidden" id="subject-line" name="_subject" value="הזמנה חדשה - ממתין לתשלום">
+                    <input type="hidden" id="next-redirect" name="_next" value="">
 
                     <div class="product-grid">
                         <label class="product-card">
                             <input type="radio" name="חבילה" value="סרטון בודד" checked 
-                                   onclick="updatePackage('single')">
+                                   onclick="updatePackage('https://mrng.to/0DsnnsFXuu', false)">
                             <div class="card-content">
                                 <span class="product-name">Single</span>
                                 <span class="product-desc">סרטון אחד<br>ערוך ומדויק</span>
@@ -90,7 +91,7 @@
 
                         <label class="product-card featured">
                             <input type="radio" name="חבילה" value="חבילת בסיס" 
-                                   onclick="updatePackage('basic')">
+                                   onclick="updatePackage('https://mrng.to/5ZQSfIDuIn', false)">
                             <div class="card-content">
                                 <span class="tag">מומלץ</span>
                                 <span class="product-name">Basic Pack</span>
@@ -101,7 +102,7 @@
 
                         <label class="product-card">
                             <input type="radio" name="חבילה" value="פרימיום" 
-                                   onclick="updatePackage('pro')">
+                                   onclick="updatePackage('https://mrng.to/Hme4wHg2Z4', true)">
                             <div class="card-content">
                                 <span class="product-name">Pro Max</span>
                                 <span class="product-desc" id="desc-pro">5 סרטונים<br>+ כתוביות ולוגו מותג</span>
@@ -154,12 +155,12 @@
                         </div>
 
                         <button type="submit" id="submit-btn" class="apple-btn">
-                            שלח הזמנה ומעבר לאישור
+                            המשך לתשלום מאובטח
                         </button>
                         
                         <div class="disclaimer">
                             <p>⚡ כלל החיתוכים נעשים על ידי AI והעבודה מתבצעת עד 24 שעות מרגע השליחה.</p>
-                            <p class="micro-copy">מיד לאחר השליחה תועבר לאישור ההזמנה בוואטסאפ.</p>
+                            <p class="micro-copy">סליקה מאובטחת. חשבונית מס נשלחת אוטומטית למייל.</p>
                         </div>
                     </div>
                 </form>
@@ -192,14 +193,19 @@
     </footer>
 
     <script>
-        // הפעם כולם הולכים לדף תודה
-        const thankYouPage = 'https://cut.vercel.app/thankyou.html';
+        let currentPaymentUrl = 'https://mrng.to/0DsnnsFXuu';
+        let isFreeMode = false;
         
-        function updatePackage(pkgType) {
+        // כתובת דף התודה
+        const thankYouPage = 'https://cut.vercel.app/thankyou.html';
+        const formAction = 'https://formsubmit.co/elazar12321@gmail.com';
+
+        function updatePackage(url, showLogo) {
+            currentPaymentUrl = url;
             const logoArea = document.getElementById('logo-area');
             const logoInput = document.getElementById('logo-input');
             
-            if (pkgType === 'pro') {
+            if (showLogo) {
                 logoArea.classList.remove('hidden');
                 logoInput.required = true;
             } else {
@@ -211,13 +217,19 @@
         function checkCoupon() {
             const input = document.getElementById('coupon-input');
             const msg = document.getElementById('coupon-msg');
+            const btn = document.getElementById('submit-btn');
             const code = input.value.trim();
             const basicDesc = document.getElementById('desc-basic');
             const proDesc = document.getElementById('desc-pro');
 
+            // איפוס
+            isFreeMode = false;
             msg.textContent = '';
             msg.className = 'coupon-msg';
+            btn.textContent = 'המשך לתשלום מאובטח';
+            btn.style.background = 'var(--brand-blue)';
             
+            // איפוס טקסטים רגילים
             if (!code.includes('חנוכה')) {
                 basicDesc.innerHTML = '5 סרטונים<br>(40₪ לסרטון)';
                 proDesc.innerHTML = '5 סרטונים<br>+ כתוביות ולוגו מותג';
@@ -229,12 +241,42 @@
                 basicDesc.innerHTML = '<span style="color:#2ecc71;font-weight:bold">8 סרטונים (5+3)</span><br>(מבצע חנוכה!)';
                 proDesc.innerHTML = '<span style="color:#2ecc71;font-weight:bold">8 סרטונים (5+3)</span><br>+ כתוביות ולוגו';
             } else if (code === 'cuter1') {
-                msg.textContent = '🔓 מוד מפתח פעיל.';
+                isFreeMode = true;
+                msg.textContent = '🔓 מוד מפתח: תשלום בוטל.';
                 msg.className = 'coupon-msg success';
+                btn.textContent = 'שלח הזמנה (ללא תשלום)';
+                btn.style.background = '#333';
             } else if (code !== '') {
                 msg.textContent = '❌ קוד קופון לא תקין';
                 msg.className = 'coupon-msg error';
             }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault(); // עוצר את השליחה הרגילה
+            const form = event.target;
+            const redirectInput = document.getElementById('next-redirect');
+            const subjectInput = document.getElementById('subject-line');
+
+            // לוגיקה חכמה להפרדה
+            if (isFreeMode) {
+                // מצב חינם:
+                // 1. כותרת המייל ברורה: הזמנה בחינם
+                subjectInput.value = "הזמנה חדשה - חינם (קופון מפתח)";
+                // 2. הפניה לדף התודה (מדלגים על מורנינג)
+                redirectInput.value = thankYouPage;
+            } else {
+                // מצב תשלום:
+                // 1. כותרת המייל: ממתין לתשלום (כדי שתדע שזה עוד לא שולם)
+                subjectInput.value = "הזמנה חדשה - ממתין לאישור תשלום";
+                // 2. הפניה למורנינג לתשלום
+                redirectInput.value = currentPaymentUrl;
+            }
+
+            // שליחת הטופס
+            form.action = formAction;
+            form.method = "POST";
+            form.submit();
         }
     </script>
 </body>

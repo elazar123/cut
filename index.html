@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cut - העורך האישי שלך</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="glass-nav">
+        <div class="container nav-flex">
+            <div class="brand-nav">Cut</div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-brand-wrapper">
+                <div class="snake-border">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="hero-brand-mark">Cut</div>
+            </div>
+            
+            <h1 class="hero-title">
+                לתת לתוכן שלך <br>
+                <span class="gradient-text">את הבמה שמגיעה לו</span>
+            </h1>
+            <p class="hero-subtitle">
+                העורך האישי שלך. מדויק. מהיר. פרימיום.<br>
+                הפוך את חומרי הגלם שלך לנוכחות דיגיטלית שאי אפשר להתעלם ממנה.
+            </p>
+        </div>
+    </section>
+
+    <section class="workflow-section">
+        <div class="container">
+            <div class="grid-3">
+                <div class="flow-card">
+                    <span class="step-num">01</span>
+                    <h3>העלאה</h3>
+                    <p>שולחים קישור לדרייב או ליוטיוב.</p>
+                </div>
+                <div class="flow-card">
+                    <span class="step-num">02</span>
+                    <h3>ליטוש AI</h3>
+                    <p>האלגוריתם והעורכים שלנו יוצרים קסם.</p>
+                </div>
+                <div class="flow-card">
+                    <span class="step-num">03</span>
+                    <h3>תוצאה</h3>
+                    <p>תוך 24 שעות הסרטון אצלך.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="action-section">
+        <div class="container">
+            
+            <div class="form-wrapper">
+                <div class="form-header">
+                    <h2>התאם את החבילה שלך</h2>
+                    <p>שקיפות מלאה. זה מה שכלול:</p>
+                </div>
+
+                <form action="https://formsubmit.co/elazar12321@gmail.com" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_subject" value="הזמנה חדשה - Cut Premium">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" id="redirect-url" name="_next" value="https://mrng.to/0DsnnsFXuu"> 
+
+                    <div class="product-grid">
+                        
+                        <label class="product-card">
+                            <input type="radio" name="חבילה" value="סרטון בודד" checked 
+                                   onclick="updatePackage('https://mrng.to/0DsnnsFXuu', false)">
+                            <div class="card-content">
+                                <span class="product-name">Single</span>
+                                <span class="product-desc">סרטון אחד<br>ערוך ומדויק</span>
+                                <span class="product-price">₪75</span>
+                            </div>
+                        </label>
+
+                        <label class="product-card featured">
+                            <input type="radio" name="חבילה" value="חבילת בסיס" 
+                                   onclick="updatePackage('https://mrng.to/5ZQSfIDuIn', false)">
+                            <div class="card-content">
+                                <span class="tag">מומלץ</span>
+                                <span class="product-name">Basic Pack</span>
+                                <span class="product-desc">5 סרטונים<br>(40₪ לסרטון)</span>
+                                <span class="product-price">₪200</span>
+                            </div>
+                        </label>
+
+                        <label class="product-card">
+                            <input type="radio" name="חבילה" value="פרימיום" 
+                                   onclick="updatePackage('https://mrng.to/Hme4wHg2Z4', true)">
+                            <div class="card-content">
+                                <span class="product-name">Pro Max</span>
+                                <span class="product-desc">5 סרטונים<br>+ כתוביות ולוגו מותג</span>
+                                <span class="product-price">₪800</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="inputs-area">
+                        <div class="input-row">
+                            <div class="field-group">
+                                <label>שם מלא</label>
+                                <input type="text" name="שם" placeholder="ישראל ישראלי" required>
+                            </div>
+                            <div class="field-group">
+                                <label>טלפון נייד</label>
+                                <input type="tel" name="טלפון" placeholder="050-0000000" required>
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label>אימייל לקבלת הקבצים</label>
+                            <input type="email" name="אימייל" placeholder="name@icloud.com" required>
+                        </div>
+
+                        <div class="field-group">
+                            <label>קישור לחומרי גלם</label>
+                            <input type="url" name="קישור_חומרים" placeholder="https://..." required>
+                        </div>
+
+                        <div class="field-group hidden fade-in" id="logo-area">
+                            <label class="highlight">העלאת לוגו (עבור חבילת Pro Max)</label>
+                            <div class="file-drop">
+                                <input type="file" id="logo-input" name="לוגו">
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label>הערות אישיות</label>
+                            <textarea name="הערות" rows="2" placeholder="דגשים מיוחדים לעריכה..."></textarea>
+                        </div>
+
+                        <button type="submit" class="apple-btn">
+                            המשך לתשלום מאובטח
+                        </button>
+                        
+                        <div class="disclaimer">
+                            <p>⚡ כלל החיתוכים נעשים על ידי AI והעבודה מתבצעת עד 24 שעות מרגע השליחה.</p>
+                            <p class="micro-copy">סליקה מאובטחת. חשבונית מס נשלחת אוטומטית למייל.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="custom-plan-section">
+        <div class="container">
+            <div class="custom-box">
+                <div class="custom-text">
+                    <h3>צריכים משהו גדול יותר?</h3>
+                    <p>לחבילות תוכן חודשיות, הפקות גדולות או התאמה אישית - בואו נדבר.</p>
+                </div>
+                <a href="https://wa.me/972525624350?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%95%D7%91%D7%A8%D7%9B%D7%94%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%94%20%D7%9C%D7%97%D7%91%D7%99%D7%9C%D7%94%20%D7%9E%D7%95%D7%A8%D7%97%D7%91%D7%AA%20%D7%A9%D7%9C%20Cut%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%94%D7%9E%D7%95%D7%92%D7%93%D7%9C%D7%95%D7%AA%20%D7%A9%D7%9C%D7%9B%D7%9D%20%D7%91%D7%94%D7%AA%D7%90%D7%9E%D7%94%20%D7%90%D7%99%D7%A9%D7%99%D7%AA" target="_blank" class="whatsapp-btn">
+                    <span class="icon">💬</span> דברו איתי בוואטסאפ
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="brand-footer">Cut</p>
+            <div class="footer-info">
+                <p>מבית <strong>נהורא שידורים חיים</strong></p>
+                <p>צילום | הפקה | עריכה | 052-5624350</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updatePackage(url, showLogo) {
+            document.getElementById('redirect-url').value = url;
+            const logoArea = document.getElementById('logo-area');
+            const logoInput = document.getElementById('logo-input');
+            
+            if (showLogo) {
+                logoArea.classList.remove('hidden');
+                logoInput.required = true;
+            } else {
+                logoArea.classList.add('hidden');
+                logoInput.required = false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -73,7 +73,6 @@
                 </div>
 
                 <form id="orderForm" onsubmit="handleFormSubmit(event)" enctype="multipart/form-data">
-                    
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" id="subject-line" name="_subject" value="הזמנה חדשה - ממתין לתשלום">
                     <input type="hidden" id="next-redirect" name="_next" value="">
@@ -196,8 +195,9 @@
         let currentPaymentUrl = 'https://mrng.to/0DsnnsFXuu';
         let isFreeMode = false;
         
-        // כתובת דף התודה
-        const thankYouPage = 'https://cut.vercel.app/thankyou.html';
+        // תיקון קריטי: זיהוי אוטומטי של כתובת האתר הנוכחית
+        // זה יחזיר משהו כמו https://cut-ngfe...vercel.app/thankyou.html
+        const thankYouPage = window.location.origin + '/thankyou.html';
         const formAction = 'https://formsubmit.co/elazar12321@gmail.com';
 
         function updatePackage(url, showLogo) {
@@ -222,14 +222,12 @@
             const basicDesc = document.getElementById('desc-basic');
             const proDesc = document.getElementById('desc-pro');
 
-            // איפוס
             isFreeMode = false;
             msg.textContent = '';
             msg.className = 'coupon-msg';
             btn.textContent = 'המשך לתשלום מאובטח';
             btn.style.background = 'var(--brand-blue)';
             
-            // איפוס טקסטים רגילים
             if (!code.includes('חנוכה')) {
                 basicDesc.innerHTML = '5 סרטונים<br>(40₪ לסרטון)';
                 proDesc.innerHTML = '5 סרטונים<br>+ כתוביות ולוגו מותג';
@@ -253,27 +251,19 @@
         }
 
         function handleFormSubmit(event) {
-            event.preventDefault(); // עוצר את השליחה הרגילה
+            event.preventDefault();
             const form = event.target;
             const redirectInput = document.getElementById('next-redirect');
             const subjectInput = document.getElementById('subject-line');
 
-            // לוגיקה חכמה להפרדה
             if (isFreeMode) {
-                // מצב חינם:
-                // 1. כותרת המייל ברורה: הזמנה בחינם
                 subjectInput.value = "הזמנה חדשה - חינם (קופון מפתח)";
-                // 2. הפניה לדף התודה (מדלגים על מורנינג)
-                redirectInput.value = thankYouPage;
+                redirectInput.value = thankYouPage; // הולך לכתובת הדינמית
             } else {
-                // מצב תשלום:
-                // 1. כותרת המייל: ממתין לתשלום (כדי שתדע שזה עוד לא שולם)
                 subjectInput.value = "הזמנה חדשה - ממתין לאישור תשלום";
-                // 2. הפניה למורנינג לתשלום
                 redirectInput.value = currentPaymentUrl;
             }
 
-            // שליחת הטופס
             form.action = formAction;
             form.method = "POST";
             form.submit();

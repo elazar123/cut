@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* תוספת עיצוב לתמונה החדשה */
+        /* --- עיצוב תמונת גיבור --- */
         .hero-image-wrapper {
             margin-top: 50px;
             padding: 0 20px;
@@ -22,15 +22,67 @@
         
         .hero-img {
             max-width: 100%;
-            width: 1000px; /* רוחב מקסימלי יפה למסכים גדולים */
-            border-radius: 20px; /* פינות עגולות כמו הכרטיסיות */
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12); /* צל שנותן עומק ותלת מימד */
+            width: 1000px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
             border: 1px solid rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
         }
 
         .hero-img:hover {
-            transform: translateY(-5px); /* אפקט ריחוף עדין כשעוברים עם העכבר */
+            transform: translateY(-5px);
+        }
+
+        /* --- עיצוב כפתור וואטסאפ --- */
+        .whatsapp-submit {
+            background: #25D366 !important;
+            color: white !important;
+        }
+
+        /* --- עיצוב גלריית סרטונים --- */
+        .portfolio-section {
+            padding: 60px 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.02));
+        }
+
+        .portfolio-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .scrolling-wrapper {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .scrolling-wrapper::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
+
+        .video-card {
+            flex: 0 0 260px; /* רוחב כרטיס */
+            height: 460px;   /* גובה כרטיס */
+            background: #000;
+            border-radius: 16px;
+            scroll-snap-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -62,7 +114,7 @@
             <div class="hero-image-wrapper">
                 <img src="images/unnamed.jpg" alt="הדגמת המערכת" class="hero-img">
             </div>
-            </div>
+        </div>
     </section>
 
     <section class="workflow-section">
@@ -92,17 +144,14 @@
             <div class="form-wrapper">
                 <div class="form-header">
                     <h2>התאם את החבילה שלך</h2>
-                    <p>שקיפות מלאה. זה מה שכלול:</p>
+                    <p>בחרו חבילה ומלאו פרטים להזמנה מהירה בוואטסאפ:</p>
                 </div>
-                <form id="orderForm" onsubmit="handleFormSubmit(event)" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" id="subject-line" name="_subject" value="הזמנה חדשה - ממתין לתשלום">
-                    <input type="hidden" id="next-redirect" name="_next" value="">
-
+                <form id="orderForm" onsubmit="handleWhatsAppSubmit(event)">
+                    
                     <div class="product-grid">
                         <label class="product-card">
-                            <input type="radio" name="חבילה" value="סרטון בודד" checked 
-                                   onclick="updatePackage('https://mrng.to/0DsnnsFXuu', false)">
+                            <input type="radio" name="חבילה" value="סרטון בודד (75₪)" checked 
+                                   onclick="toggleLogoField(false)">
                             <div class="card-content">
                                 <span class="product-name">Single</span>
                                 <span class="product-desc">סרטון אחד<br>ערוך ומדויק</span>
@@ -111,8 +160,8 @@
                         </label>
                         
                         <label class="product-card featured">
-                            <input type="radio" name="חבילה" value="חבילת בסיס" 
-                                   onclick="updatePackage('https://mrng.to/5ZQSfIDuIn', false)">
+                            <input type="radio" name="חבילה" value="חבילת בסיס (200₪)" 
+                                   onclick="toggleLogoField(false)">
                             <div class="card-content">
                                 <span class="tag">מומלץ</span>
                                 <span class="product-name">Basic Pack</span>
@@ -122,8 +171,8 @@
                         </label>
                         
                         <label class="product-card">
-                            <input type="radio" name="חבילה" value="פרימיום" 
-                                   onclick="updatePackage('https://mrng.to/Hme4wHg2Z4', true)">
+                            <input type="radio" name="חבילה" value="פרימיום Pro Max (800₪)" 
+                                   onclick="toggleLogoField(true)">
                             <div class="card-content">
                                 <span class="product-name">Pro Max</span>
                                 <span class="product-desc" id="desc-pro">5 סרטונים<br>+ כתוביות ולוגו מותג</span>
@@ -136,35 +185,38 @@
                         <div class="input-row">
                             <div class="field-group">
                                 <label>שם מלא</label>
-                                <input type="text" name="שם" placeholder="ישראל ישראלי" required>
+                                <input type="text" id="name" name="שם" placeholder="ישראל ישראלי" required>
                             </div>
                             <div class="field-group">
                                 <label>טלפון נייד</label>
-                                <input type="tel" name="טלפון" placeholder="050-0000000" required>
+                                <input type="tel" id="phone" name="טלפון" placeholder="050-0000000">
                             </div>
                         </div>
 
                         <div class="field-group">
-                            <label>אימייל לקבלת הקבצים</label>
-                            <input type="email" name="אימייל" placeholder="name@icloud.com" required>
+                            <label>אימייל לקבלת הקבצים (לא חובה)</label>
+                            <input type="email" id="email" name="אימייל" placeholder="name@icloud.com">
                         </div>
 
                         <div class="field-group">
                             <label>קישור לחומרי גלם</label>
-                            <input type="url" name="קישור_חומרים" placeholder="https://..." required>
+                            <input type="url" id="material_link" name="קישור_חומרים" placeholder="https://..." required>
                         </div>
 
                         <div class="field-group hidden fade-in" id="logo-area">
-                            <label class="highlight">העלאת לוגו (עבור חבילת Pro Max)</label>
-                            <div class="file-drop">
-                                <input type="file" id="logo-input" name="brand_logo" accept="image/png, image/jpeg, image/svg+xml">
-                                <p class="micro-copy" style="margin-top:5px;">קבצי תמונה בלבד (עד 25MB)</p>
-                            </div>
+                            <label class="highlight">קישור ללוגו / קבצים נוספים (עבור חבילת Pro Max)</label>
+                            <input type="url" id="logo-input" name="brand_logo_link" 
+                                   placeholder="https://drive.google.com/..." 
+                                   style="direction: ltr; text-align: left;">
+                            <p class="micro-copy" style="margin-top:5px;">
+                                נא לצרף קישור לתיקיית דרייב עם הלוגו וקבצים נוספים.<br>
+                                <strong>חשוב:</strong> וודאו שהקישור פתוח לשיתוף (Anyone with the link).
+                            </p>
                         </div>
 
                         <div class="field-group">
                             <label>הערות אישיות</label>
-                            <textarea name="הערות" rows="2" placeholder="דגשים מיוחדים לעריכה..."></textarea>
+                            <textarea id="notes" name="הערות" rows="2" placeholder="דגשים מיוחדים לעריכה..."></textarea>
                         </div>
 
                         <div class="coupon-section">
@@ -176,13 +228,12 @@
                             <div id="coupon-msg" class="coupon-msg"></div>
                         </div>
 
-                        <button type="submit" id="submit-btn" class="apple-btn">
-                            המשך לתשלום מאובטח
+                        <button type="submit" id="submit-btn" class="apple-btn whatsapp-submit">
+                            המשך להזמנה בוואטסאפ 💬
                         </button>
 
                         <div class="disclaimer">
-                            <p>⚡ כלל החיתוכים נעשים על ידי AI והעבודה מתבצעת עד 24 שעות מרגע השליחה.</p>
-                            <p class="micro-copy">סליקה מאובטחת. חשבונית מס נשלחת אוטומטית למייל.</p>
+                            <p>⚡ לחיצה על הכפתור תעביר אותך לצ'אט איתנו לסגירת ההזמנה.</p>
                         </div>
                     </div>
                 </form>
@@ -190,6 +241,90 @@
         </div>
     </section>
 
+    <section class="portfolio-section">
+        <div class="container">
+            <h2 class="portfolio-title">תוצאות שמדברות בעד עצמן</h2>
+            
+            <div class="scrolling-wrapper">
+                
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/1.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/2.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/3.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/4.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/5.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/6.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/7.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/8.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/9.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/10.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/11.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="video-card">
+                    <video controls preload="metadata" playsinline>
+                        <source src="videos/12.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+            </div>
+            <p style="text-align:center; margin-top:10px; opacity:0.6; font-size:0.9rem;">
+                ← גררו הצידה לצפייה בעוד דוגמאות →
+            </p>
+        </div>
+    </section>
     <section class="custom-plan-section">
         <div class="container">
             <div class="custom-box">
@@ -215,17 +350,14 @@
     </footer>
 
     <script>
-        let currentPaymentUrl = 'https://mrng.to/0DsnnsFXuu';
-        let isFreeMode = false;
-        const thankYouPage = window.location.origin + '/thankyou.html';
-        const formAction = 'https://formsubmit.co/elazar12321@gmail.com';
+        const MY_PHONE_NUMBER = '972525624350'; 
+        let activeCoupon = '';
 
-        function updatePackage(url, showLogo) {
-            currentPaymentUrl = url;
+        function toggleLogoField(show) {
             const logoArea = document.getElementById('logo-area');
             const logoInput = document.getElementById('logo-input');
             
-            if (showLogo) {
+            if (show) {
                 logoArea.classList.remove('hidden');
                 logoInput.required = true;
             } else {
@@ -238,17 +370,14 @@
         function checkCoupon() {
             const input = document.getElementById('coupon-input');
             const msg = document.getElementById('coupon-msg');
-            const btn = document.getElementById('submit-btn');
             const code = input.value.trim();
             
             const basicDesc = document.getElementById('desc-basic');
             const proDesc = document.getElementById('desc-pro');
 
-            isFreeMode = false;
             msg.textContent = '';
             msg.className = 'coupon-msg';
-            btn.textContent = 'המשך לתשלום מאובטח';
-            btn.style.background = 'var(--brand-blue)';
+            activeCoupon = '';
 
             if (!code.includes('חנוכה')) {
                 basicDesc.innerHTML = '5 סרטונים<br>(40₪ לסרטון)';
@@ -258,38 +387,50 @@
             if (code === 'חנוכה') {
                 msg.textContent = '🎉 קוד התקבל! נוספו 3 סרטונים במתנה.';
                 msg.className = 'coupon-msg success';
+                activeCoupon = 'חנוכה (3 סרטונים מתנה)';
                 
                 basicDesc.innerHTML = '<span style="color:#2ecc71;font-weight:bold">8 סרטונים (5+3)</span><br>(מבצע חנוכה!)';
                 proDesc.innerHTML = '<span style="color:#2ecc71;font-weight:bold">8 סרטונים (5+3)</span><br>+ כתוביות ולוגו';
 
-            } else if (code === 'cuter1') {
-                isFreeMode = true;
-                msg.textContent = '🔓 מוד מפתח: תשלום בוטל.';
-                msg.className = 'coupon-msg success';
-                btn.textContent = 'שלח הזמנה (ללא תשלום)';
-                btn.style.background = '#333';
             } else if (code !== '') {
                 msg.textContent = '❌ קוד קופון לא תקין';
                 msg.className = 'coupon-msg error';
             }
         }
 
-        function handleFormSubmit(event) {
+        function handleWhatsAppSubmit(event) {
             event.preventDefault();
-            const form = event.target;
-            const redirectInput = document.getElementById('next-redirect');
-            const subjectInput = document.getElementById('subject-line');
 
-            if (isFreeMode) {
-                subjectInput.value = "הזמנה חדשה - חינם (קופון מפתח)";
-                redirectInput.value = thankYouPage;
-            } else {
-                subjectInput.value = "הזמנה חדשה - ממתין לאישור תשלום";
-                redirectInput.value = currentPaymentUrl;
+            const package = document.querySelector('input[name="חבילה"]:checked').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const materialLink = document.getElementById('material_link').value;
+            const logoLink = document.getElementById('logo-input').value;
+            const notes = document.getElementById('notes').value;
+
+            let message = `*שלום, אני מעוניין להזמין עריכת וידאו (Cut)* 👋\n\n`;
+            message += `📦 *חבילה נבחרת:* ${package}\n`;
+            message += `👤 *שם:* ${name}\n`;
+            if(phone) message += `📱 *טלפון:* ${phone}\n`;
+            if(email) message += `📧 *מייל:* ${email}\n`;
+            message += `🔗 *קישור לחומרים:* ${materialLink}\n`;
+            
+            if (logoLink) {
+                message += `🎨 *קישור ללוגו:* ${logoLink}\n`;
+            }
+            
+            if (activeCoupon) {
+                message += `🎁 *קופון פעיל:* ${activeCoupon}\n`;
             }
 
-            form.action = formAction;
-            form.submit();
+            if (notes) {
+                message += `📝 *הערות:* ${notes}\n`;
+            }
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${MY_PHONE_NUMBER}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>

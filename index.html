@@ -1,94 +1,94 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="he">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cut - העורך האישי שלך</title>
-    
-    <meta property="og:title" content="Cut - עריכת וידאו לסטורי ורילס">
-    <meta property="og:description" content="משיעור ארוך לסרטון קצר ב-24 שעות. לחצו להזמנה מהירה בוואטסאפ.">
-    <meta property="og:image" content="https://cut.vercel.app/images/preview.jpg">
-    <meta property="og:url" content="https://cut.vercel.app">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="he_IL">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    
-    <style>
-        /* --- עיצוב תמונת גיבור --- */
-        .hero-image-wrapper {
-            margin-top: 50px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cut - העורך האישי שלך</title>
         
-        .hero-img {
-            max-width: 100%;
-            width: 1000px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-img:hover {
-            transform: translateY(-5px);
-        }
-
-        /* --- עיצוב כפתור וואטסאפ --- */
-        .whatsapp-submit {
-            background: #25D366 !important;
-            color: white !important;
-        }
-
-        /* --- עיצוב גלריית סרטונים --- */
-        .portfolio-section {
-            padding: 60px 0;
-            overflow: hidden;
-            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.02));
-        }
-
-        .portfolio-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        .scrolling-wrapper {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding: 20px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
-        }
-
-        .scrolling-wrapper::-webkit-scrollbar {
-            display: none; /* Chrome, Safari */
-        }
-
-        .video-card {
-            flex: 0 0 260px; /* רוחב כרטיס */
-            height: 460px;   /* גובה כרטיס */
-            background: #000;
-            border-radius: 16px;
-            scroll-snap-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        .video-card video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
-</head>
+        <meta property="og:title" content="Cut - עריכת וידאו לסטורי ורילס">
+        <meta property="og:description" content="משיעור ארוך לסרטון קצר ב-24 שעות. לחצו להזמנה מהירה בוואטסאפ.">
+        <meta property="og:image" content="https://cut-r8lu.vercel.app/images/preview.jpg">
+        <meta property="og:url" content="https://cut-r8lu.vercel.app/">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="he_IL">
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        
+        <style>
+            /* --- עיצוב תמונת גיבור --- */
+            .hero-image-wrapper {
+                margin-top: 50px;
+                padding: 0 20px;
+                display: flex;
+                justify-content: center;
+            }
+            
+            .hero-img {
+                max-width: 100%;
+                width: 1000px;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+                border: 1px solid rgba(0,0,0,0.05);
+                transition: transform 0.3s ease;
+            }
+    
+            .hero-img:hover {
+                transform: translateY(-5px);
+            }
+    
+            /* --- עיצוב כפתור וואטסאפ --- */
+            .whatsapp-submit {
+                background: #25D366 !important;
+                color: white !important;
+            }
+    
+            /* --- עיצוב גלריית סרטונים --- */
+            .portfolio-section {
+                padding: 60px 0;
+                overflow: hidden;
+                background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.02));
+            }
+    
+            .portfolio-title {
+                text-align: center;
+                font-size: 2rem;
+                margin-bottom: 30px;
+                font-weight: 700;
+            }
+    
+            .scrolling-wrapper {
+                display: flex;
+                gap: 20px;
+                overflow-x: auto;
+                padding: 20px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Firefox */
+            }
+    
+            .scrolling-wrapper::-webkit-scrollbar {
+                display: none; /* Chrome, Safari */
+            }
+    
+            .video-card {
+                flex: 0 0 260px; /* רוחב כרטיס */
+                height: 460px;   /* גובה כרטיס */
+                background: #000;
+                border-radius: 16px;
+                scroll-snap-align: center;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+                overflow: hidden;
+                border: 1px solid rgba(0,0,0,0.1);
+                position: relative;
+            }
+    
+            .video-card video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        </style>
+    </head>
 <body>
     <nav class="glass-nav">
         <div class="container nav-flex">

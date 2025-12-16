@@ -3,361 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cut - עריכת וידאו מקצועית</title>
+    <title>Cut - הופכים תוכן לנכס ויראלי</title>
     
     <meta property="og:title" content="Cut - עריכת וידאו לסטורי ורילס">
-    <meta property="og:description" content="מייצרים לך נכס דיגיטלי ויראלי. חבילות תוכן למותגים ואנשי עסקים.">
+    <meta property="og:description" content="הופכים שיעור של שעה לנכס ויראלי. סרטוני סטורי חתוכים ומדויקים.">
     <meta property="og:image" content="https://cut-r8lu.vercel.app/images/preview.jpg">
     <meta property="og:url" content="https://cut-r8lu.vercel.app/">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="he_IL">
     
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* עיצוב נקי ובהיר */
-            --bg-body: #ffffff;
-            --bg-gray: #f8fafc;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --brand-primary: #2563eb; /* כחול רויאל */
+            --brand-primary: #0d9488; /* Teal color from image */
             --brand-dark: #0f172a;
+            --bg-light: #f0fdfa;
+            --accent-red: #fecaca;
+            --accent-text-red: #991b1b;
+            --text-main: #1e293b;
+            --text-muted: #475569;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Heebo', sans-serif; }
         
         body {
-            background-color: var(--bg-body);
+            background-color: #f8fafc;
             color: var(--text-main);
             overflow-x: hidden;
-            padding-top: 60px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* --- NAVBAR --- */
-        .nav-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e2e8f0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* --- 1. HERO SECTION --- */
+        .hero-section {
+            text-align: center;
+            padding: 80px 0 60px;
+            background: linear-gradient(to bottom, #fff, #f0f9ff);
         }
 
-        .nav-brand { font-size: 1.5rem; font-weight: 900; color: var(--brand-dark); letter-spacing: -1px; }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            padding: 60px 0 40px;
-            text-align: center;
-            background: linear-gradient(to bottom, #f0f9ff 0%, #ffffff 100%);
+        .brand-top {
+            color: var(--brand-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: block;
         }
 
         .hero-title {
             font-size: 3.5rem;
             line-height: 1.1;
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--brand-dark);
         }
-        .hero-title span { color: var(--brand-primary); }
+
+        .hero-title span {
+            color: var(--brand-primary);
+        }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 30px;
-            line-height: 1.5;
+            max-width: 650px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
         }
 
-        /* Hero Image - Added Back */
-        .hero-image-wrapper {
-            margin: 30px auto;
-            max-width: 900px;
-            padding: 0 10px;
-        }
-        
-        .hero-img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        .hero-img:hover { transform: translateY(-5px); }
-
-        .hero-cta-btn {
+        .cta-btn {
             background: var(--brand-primary);
             color: white;
             font-weight: 700;
-            padding: 12px 40px;
+            font-size: 1.2rem;
+            padding: 15px 40px;
             border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.3);
-            transition: 0.2s;
+            box-shadow: 0 10px 20px rgba(13, 148, 136, 0.3);
+            transition: 0.3s;
             display: inline-block;
-            margin-top: 20px;
         }
-        .hero-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.4); }
 
-        /* --- VIDEO GALLERY --- */
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(13, 148, 136, 0.4);
+        }
+
+        /* --- 2. PAIN POINTS --- */
+        .pain-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--brand-dark);
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .pain-card {
+            background: #fff1f2; /* Light reddish background */
+            border: 1px solid #ffe4e6;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        
+        .pain-card:hover { transform: translateY(-5px); }
+
+        .pain-icon {
+            width: 50px;
+            height: 50px;
+            background: #f43f5e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+            font-weight: bold;
+        }
+
+        .pain-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--brand-dark); }
+        .pain-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* --- TRANSITION TEXT --- */
+        .transition-text {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.3rem;
+            color: var(--brand-primary);
+            font-weight: 700;
+            background: #f0fdfa;
+        }
+
+        /* --- 3. PROCESS --- */
+        .process-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .step-num {
+            width: 60px;
+            height: 60px;
+            background: var(--brand-primary);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 20px rgba(13, 148, 136, 0.2);
+        }
+
+        /* --- VIDEO GALLERY (PROOF) --- */
         .portfolio-section {
-            padding: 40px 0;
-            background: #000;
+            padding: 60px 0;
+            background: #0f172a;
+            color: white;
         }
-
+        
         .scrolling-wrapper {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             overflow-x: auto;
-            padding: 10px;
-            scroll-snap-type: x mandatory;
+            padding: 20px;
             scrollbar-width: none;
         }
         .scrolling-wrapper::-webkit-scrollbar { display: none; }
 
         .video-card {
-            flex: 0 0 240px;
-            height: 426px;
-            background: #111;
+            flex: 0 0 250px;
+            height: 440px;
+            background: #000;
             border-radius: 12px;
-            scroll-snap-align: center;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.2);
         }
         .video-card video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- PACKAGES SECTION --- */
-        .packages-section {
-            padding: 60px 0;
-            background: white;
+        /* --- TESTIMONIALS --- */
+        .testimonials-section {
+            padding: 80px 0;
+            background: #f8fafc;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 40px;
-            color: var(--brand-dark);
-        }
-
-        .pricing-grid {
+        .test-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .pkg-card {
+        .test-card {
             background: white;
-            border: 1px solid #e2e8f0;
-            padding: 30px 20px;
+            padding: 30px;
             border-radius: 16px;
-            text-align: center;
-            transition: 0.2s;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        }
-
-        .pkg-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-            border-color: var(--brand-primary);
-        }
-
-        .pkg-card.featured {
-            border: 2px solid var(--brand-primary);
-            background: #eff6ff;
-            position: relative;
-        }
-
-        .badge {
-            background: var(--brand-primary);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .pkg-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; color: var(--brand-dark); }
-        
-        /* Math display */
-        .math-display {
-            font-size: 1.2rem;
-            color: var(--text-main);
-            font-weight: 500;
-            margin-bottom: 5px;
-            direction: ltr; /* Keeps numbers ordered correctly */
-            display: inline-block;
-        }
-        .total-price {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-weight: 400;
-        }
-
-        .pkg-features {
-            list-style: none;
-            text-align: right;
-            padding-right: 10px;
-            margin-top: 20px;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
         }
         
-        .pkg-features li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-main); }
-        .pkg-features li::before { content: '✓'; color: var(--brand-primary); margin-left: 8px; font-weight: bold; }
+        .test-text { font-style: italic; color: var(--text-muted); margin-bottom: 15px; font-size: 1.05rem; }
+        .test-author { font-weight: 700; color: var(--brand-primary); }
 
-        /* --- ORDER FORM --- */
+        /* --- 4. ORDER FORM (THE OFFER) --- */
         .order-section {
-            padding: 60px 0;
-            background: var(--bg-gray);
+            padding: 60px 0 100px;
+            background: white;
         }
 
         .form-container {
             background: white;
             border-radius: 20px;
             padding: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.1);
             border: 1px solid #e2e8f0;
         }
 
-        /* Grid for form selection too */
-        .form-pkg-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* Package selection styling */
+        .pkg-options {
+            display: flex;
+            flex-direction: column;
             gap: 15px;
             margin-bottom: 30px;
         }
 
-        .form-pkg-option {
-            cursor: pointer;
-            position: relative;
-        }
+        .pkg-radio { display: none; }
         
-        .form-pkg-option input { display: none; }
-        
-        .form-pkg-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            background: white;
-            transition: 0.2s;
-            height: 100%;
+        .pkg-label {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        .form-pkg-option:hover .form-pkg-card { border-color: var(--brand-primary); }
-        
-        .form-pkg-option input:checked + .form-pkg-card {
+        .pkg-radio:checked + .pkg-label {
             border-color: var(--brand-primary);
-            background: #eff6ff;
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+            background: #f0fdfa;
         }
 
-        .opt-name { font-weight: 700; display: block; margin-bottom: 5px; color: var(--brand-dark); }
-        .opt-math { font-size: 0.9rem; color: var(--text-muted); display: block; direction: ltr; }
-        .opt-total { font-weight: 700; color: var(--brand-primary); display: block; margin-top: 8px; }
+        .pkg-info h4 { font-size: 1.1rem; font-weight: 700; color: var(--brand-dark); }
+        .pkg-info span { font-size: 0.9rem; color: var(--text-muted); }
+        .pkg-price { font-size: 1.2rem; font-weight: 800; color: var(--brand-primary); }
 
         /* Inputs */
-        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-        .field-group { margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
         
-        label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 500; }
-        
-        input, textarea {
+        .form-input {
             width: 100%;
             padding: 14px;
             border-radius: 8px;
             border: 1px solid #cbd5e1;
-            background: #f8fafc;
             font-size: 1rem;
-            transition: 0.2s;
+            background: #f8fafc;
         }
-        
-        input:focus, textarea:focus {
+
+        .form-input:focus {
             outline: none;
             border-color: var(--brand-primary);
             background: white;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        .submit-btn {
-            background: var(--brand-primary);
-            color: white;
-            font-weight: 700;
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            margin-top: 10px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .submit-btn:hover { background: #1d4ed8; }
-
+        .row-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
         .hidden { display: none; }
 
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .input-row { grid-template-columns: 1fr; gap: 10px; }
-            .form-container { padding: 20px; }
+            .hero-title { font-size: 2.8rem; }
+            .row-inputs { grid-template-columns: 1fr; }
+            .form-container { padding: 25px; }
         }
-        
+
         /* Coupon */
-        .coupon-row { display: flex; gap: 10px; }
-        .apply-btn { background: var(--brand-dark); color: white; border: none; padding: 0 20px; border-radius: 8px; cursor: pointer; }
-        .coupon-msg { font-size: 0.85rem; margin-top: 5px; font-weight: bold; }
-        .coupon-msg.success { color: #16a34a; }
-        .coupon-msg.error { color: #dc2626; }
+        .coupon-box { display: flex; gap: 10px; margin-top: 5px; }
+        .coupon-btn { background: var(--brand-dark); color: white; border: none; padding: 0 20px; border-radius: 8px; cursor: pointer; }
+        .coupon-msg { font-size: 0.9rem; margin-top: 5px; font-weight: bold; color: #16a34a; }
 
     </style>
 </head>
 <body>
 
-    <nav class="nav-bar">
-        <div class="nav-brand">Cut</div>
-    </nav>
-
     <section class="hero-section">
         <div class="container">
+            <span class="brand-top">Cut: הפתרון שלך לתוכן ויראלי</span>
             <h1 class="hero-title">
-                נכס ויראלי<br>
-                <span>תוך 24 שעות</span>
+                הופכים שיעור של שעה<br>
+                <span>לנכס ויראלי:</span><br>
+                סרטוני סטורי חתוכים ומדויקים<br>
+                שימקסמו את הקהל שלך.
             </h1>
             <p class="hero-subtitle">
-                עריכת וידאו מקצועית למותגים ויוצרי תוכן.
-                שולחים חומר גלם - מקבלים סרטונים מוכנים לרילס וטיקטוק.
+                אתם מתמקדים בתוכן. אנחנו מתמקדים בויראליות. שלחו לנו הרצאה, פודקאסט או שיעור,
+                וקבלו סרטונים ערוכים ומוגמרים שמוכנים לשרוף את הרשת.
             </p>
-            
-            <div class="hero-image-wrapper">
-                <img src="images/unnamed.jpg" alt="Cut Examples" class="hero-img">
-            </div>
+            <a href="#order" class="cta-btn">אני רוצה להגדיל חשיפה עכשיו 🔥</a>
+        </div>
+    </section>
 
-            <a href="#order" class="hero-cta-btn">להזמנה מהירה 👇</a>
+    <section class="pain-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>האם זה נשמע לך מוכר? (הכאבים ש-Cut פותר)</h2>
+            </div>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-icon">!</div>
+                    <h3>בזבוז זמן יקר</h3>
+                    <p>אתה מבלה שעות בעריכת חומרים במקום להתמקד בעסק שלך או בייצור תוכן חדש.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">▶</div>
+                    <h3>תוכן שלא ממריא</h3>
+                    <p>הסרטונים ארוכים מדי, אינם חתוכים נכון ומאבדים את הקהל בשניות הראשונות.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">⚙</div>
+                    <h3>מורכבות טכנית</h3>
+                    <p>עיצוב סטורי מקצועי, כתוביות מדויקות ולוגו מותאם דורשים ידע וכלים יקרים.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="transition-text">
+        עם Cut, כל אלו נעלמים. אנחנו הופכים את התוכן הקיים שלך לנכס שיווקי עוצמתי.
+    </div>
+
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>3 שלבים פשוטים לתוכן ויראלי:</h2>
+            </div>
+            <div class="steps-grid">
+                <div>
+                    <div class="step-num">1</div>
+                    <h3>שולחים את החומר</h3>
+                    <p>אתם שולחים אלינו קישור לקובץ מלא (שיעור, הרצאה) דרך דרייב, דרופבוקס או כל שירות אחר.</p>
+                </div>
+                <div>
+                    <div class="step-num">2</div>
+                    <h3>חותכים ומעצבים (אצלנו)</h3>
+                    <p>צוות העריכה המקצועי שלנו צופה בחומר, מאתר את הרגעים הויראליים ביותר, וחותך אותם לסרטוני סטורי מושלמים.</p>
+                </div>
+                <div>
+                    <div class="step-num">3</div>
+                    <h3>מקבלים ומשתפים (אצלכם)</h3>
+                    <p>תוך מספר ימי עסקים, הסרטונים החתוכים והמעוצבים חוזרים אליכם ישירות לנייד, מוכנים להעלאה מיידית.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="portfolio-section">
+        <div class="container" style="text-align: center; margin-bottom: 30px;">
+            <h2>תוצאות שמדברות בעד עצמן</h2>
+        </div>
         <div class="scrolling-wrapper">
             <div class="video-card"><video controls preload="metadata" playsinline><source src="videos/1.mp4" type="video/mp4"></video></div>
             <div class="video-card"><video controls preload="metadata" playsinline><source src="videos/2.mp4" type="video/mp4"></video></div>
@@ -368,144 +396,111 @@
             <div class="video-card"><video controls preload="metadata" playsinline><source src="videos/7.mp4" type="video/mp4"></video></div>
             <div class="video-card"><video controls preload="metadata" playsinline><source src="videos/8.mp4" type="video/mp4"></video></div>
             <div class="video-card"><video controls preload="metadata" playsinline><source src="videos/9.mp4" type="video/mp4"></video></div>
-            <div class="video-card"><video controls preload="metadata" playsinline><source src="videos/10.mp4" type="video/mp4"></video></div>
-            <div class="video-card"><video controls preload="metadata" playsinline><source src="videos/11.mp4" type="video/mp4"></video></div>
-            <div class="video-card"><video controls preload="metadata" playsinline><source src="videos/12.mp4" type="video/mp4"></video></div>
         </div>
     </section>
 
-    <section class="packages-section" id="packages">
+    <section class="testimonials-section">
         <div class="container">
-            <h2 class="section-title">המסלולים שלנו</h2>
-            
-            <div class="pricing-grid">
-                
-                <div class="pkg-card">
-                    <h3 class="pkg-name">Cut Basic</h3>
-                    <div class="math-display">80₪ * 10</div>
-                    <span class="total-price">(סה"כ 800₪ לחבילה)</span>
-                    <ul class="pkg-features">
-                        <li>10 סרטונים בחבילה</li>
-                        <li>חיתוך גלם מקצועי</li>
-                        <li>ללא כתוביות/לוגו</li>
-                        <li>אספקה מהירה</li>
-                    </ul>
+            <div class="test-grid">
+                <div class="test-card">
+                    <p class="test-text">"מאז שהתחלתי לעבוד עם Cut, כמות העוקבים שלי קפצה ב-40%! סוף סוף יש לי תוכן איכותי בלי לבזבז יום שלם על עריכה. מומלץ בחום!"</p>
+                    <p class="test-author">- שירה כהן, מנטורית עסקית</p>
                 </div>
-
-                <div class="pkg-card featured">
-                    <div class="badge">מומלץ 🔥</div>
-                    <h3 class="pkg-name">Cut Plus</h3>
-                    <div class="math-display">160₪ * 10</div>
-                    <span class="total-price">(סה"כ 1,600₪ לחבילה)</span>
-                    <ul class="pkg-features">
-                        <li>10 סרטונים בחבילה</li>
-                        <li>כולל כתוביות (Subtitles)</li>
-                        <li>הוספת לוגו ומיתוג</li>
-                        <li>מוזיקת רקע מדויקת</li>
-                    </ul>
+                <div class="test-card">
+                    <p class="test-text">"הכתוביות והחיתוכים המדויקים הפכו את השיעורים שלי מ'נחמד' ל'ויראלי'. העריכה המקצועית שלהם היא משחק משנה מציאות. שירות מדהים!"</p>
+                    <p class="test-author">- דניאל לוי, מרצה</p>
                 </div>
-
-                <div class="pkg-card">
-                    <h3 class="pkg-name">Cut VIP</h3>
-                    <div class="math-display">250₪ * 20</div>
-                    <span class="total-price">(סה"כ 5,000₪ לחבילה)</span>
-                    <ul class="pkg-features">
-                        <li><strong>יום צילום אצלך בעסק!</strong></li>
-                        <li>20 סרטונים בחבילה</li>
-                        <li>עריכת פרימיום מלאה</li>
-                        <li>ליווי בבניית התוכן</li>
-                    </ul>
-                </div>
-
             </div>
         </div>
     </section>
 
     <section class="order-section" id="order">
         <div class="container">
+            <div class="section-header">
+                <h2>מוכנים להתחיל? בחרו חבילה:</h2>
+            </div>
+            
             <div class="form-container">
-                <h2 style="text-align:center; margin-bottom:30px;">התחלת עבודה</h2>
-                
                 <form id="orderForm" onsubmit="handleWhatsAppSubmit(event)">
                     
-                    <div class="form-pkg-grid">
+                    <div class="pkg-options">
                         
-                        <label class="form-pkg-option">
-                            <input type="radio" name="חבילה" value="Cut Basic (800₪)" onclick="toggleLogoField(false)">
-                            <div class="form-pkg-card">
-                                <span class="opt-name">Cut Basic</span>
-                                <span class="opt-math">80₪ * 10</span>
-                                <span class="opt-total">800₪</span>
+                        <label>
+                            <input type="radio" name="חבילה" value="Cut Basic (800₪)" class="pkg-radio" onclick="toggleLogoField(false)">
+                            <div class="pkg-label">
+                                <div class="pkg-info">
+                                    <h4>Cut Basic</h4>
+                                    <span>80₪ * 10 סרטונים (ללא מיתוג)</span>
+                                </div>
+                                <div class="pkg-price">800₪</div>
                             </div>
                         </label>
 
-                        <label class="form-pkg-option">
-                            <input type="radio" name="חבילה" value="Cut Plus (1600₪)" checked onclick="toggleLogoField(true)">
-                            <div class="form-pkg-card">
-                                <span class="opt-name">Cut Plus</span>
-                                <span class="opt-math">160₪ * 10</span>
-                                <span class="opt-total">1,600₪</span>
+                        <label>
+                            <input type="radio" name="חבילה" value="Cut Plus (1600₪)" class="pkg-radio" checked onclick="toggleLogoField(true)">
+                            <div class="pkg-label">
+                                <div class="pkg-info">
+                                    <h4>Cut Plus (הכי נמכר 🔥)</h4>
+                                    <span>160₪ * 10 סרטונים (כולל מיתוג וכתוביות)</span>
+                                </div>
+                                <div class="pkg-price">1,600₪</div>
                             </div>
                         </label>
 
-                        <label class="form-pkg-option">
-                            <input type="radio" name="חבילה" value="Cut VIP (5000₪)" onclick="toggleLogoField(true)">
-                            <div class="form-pkg-card">
-                                <span class="opt-name">Cut VIP</span>
-                                <span class="opt-math">250₪ * 20</span>
-                                <span class="opt-total">5,000₪</span>
+                        <label>
+                            <input type="radio" name="חבילה" value="Cut VIP (5000₪)" class="pkg-radio" onclick="toggleLogoField(true)">
+                            <div class="pkg-label">
+                                <div class="pkg-info">
+                                    <h4>Cut VIP (יום צילום)</h4>
+                                    <span>250₪ * 20 סרטונים + צילום</span>
+                                </div>
+                                <div class="pkg-price">5,000₪</div>
                             </div>
                         </label>
 
                     </div>
 
-                    <div class="inputs-area">
-                        <div class="input-row">
-                            <div>
-                                <label>שם מלא</label>
-                                <input type="text" id="name" required>
-                            </div>
-                            <div>
-                                <label>טלפון</label>
-                                <input type="tel" id="phone">
-                            </div>
+                    <div class="row-inputs">
+                        <div class="input-group">
+                            <label>שם מלא</label>
+                            <input type="text" id="name" class="form-input" required>
                         </div>
-
-                        <div class="field-group">
-                            <label>קישור לחומרי גלם (דרייב/יוטיוב)</label>
-                            <input type="url" id="material_link" placeholder="אלא אם כן זה יום צילום VIP">
+                        <div class="input-group">
+                            <label>טלפון</label>
+                            <input type="tel" id="phone" class="form-input">
                         </div>
-
-                        <div class="field-group hidden" id="logo-area">
-                            <label>קישור ללוגו (עבור מיתוג)</label>
-                            <input type="url" id="logo-input">
-                        </div>
-
-                        <div class="field-group">
-                            <label>הערות</label>
-                            <textarea id="notes" rows="2"></textarea>
-                        </div>
-
-                        <div class="coupon-section field-group">
-                            <label>קוד הטבה</label>
-                            <div class="coupon-row">
-                                <input type="text" id="coupon-input">
-                                <button type="button" class="apply-btn" onclick="checkCoupon()">הפעל</button>
-                            </div>
-                            <div id="coupon-msg" class="coupon-msg"></div>
-                        </div>
-
-                        <button type="submit" id="submit-btn" class="submit-btn">
-                            המשך לוואטסאפ 💬
-                        </button>
                     </div>
+
+                    <div class="input-group">
+                        <label>קישור לחומרי גלם (יוטיוב/דרייב)</label>
+                        <input type="url" id="material_link" class="form-input" placeholder="אם זה יום צילום, השאר ריק">
+                    </div>
+
+                    <div class="input-group hidden" id="logo-area">
+                        <label>קישור ללוגו (עבור מיתוג)</label>
+                        <input type="url" id="logo-input" class="form-input">
+                    </div>
+
+                    <div class="input-group">
+                        <label>קוד קופון</label>
+                        <div class="coupon-box">
+                            <input type="text" id="coupon-input" class="form-input">
+                            <button type="button" class="coupon-btn" onclick="checkCoupon()">הפעל</button>
+                        </div>
+                        <div id="coupon-msg" class="coupon-msg"></div>
+                    </div>
+
+                    <button type="submit" class="cta-btn" style="width:100%; border:none; cursor:pointer;">
+                        המשך לוואטסאפ לתיאום >>
+                    </button>
+
                 </form>
             </div>
         </div>
     </section>
 
-    <footer style="text-align:center; padding:20px; color:#999; font-size:0.8rem;">
-        <p>© 2025 Cut Video Editing | 052-5624350</p>
+    <footer style="text-align:center; padding:20px; font-size:0.8rem; color:#666;">
+        © 2025 Cut - עריכת וידאו מקצועית
     </footer>
 
     <script>
@@ -515,7 +510,6 @@
         function toggleLogoField(show) {
             const logoArea = document.getElementById('logo-area');
             const logoInput = document.getElementById('logo-input');
-            
             if (show) {
                 logoArea.classList.remove('hidden');
             } else {
@@ -530,16 +524,15 @@
             const code = input.value.trim();
 
             msg.textContent = '';
-            msg.className = 'coupon-msg';
             activeCoupon = '';
 
             if (code === 'חנוכה') {
-                msg.textContent = '🎉 קוד התקבל! +3 סרטונים מתנה';
-                msg.className = 'coupon-msg success';
+                msg.textContent = '🎉 קוד התקבל! 3 סרטונים מתנה.';
+                msg.style.color = 'green';
                 activeCoupon = 'חנוכה (+3 סרטונים)';
             } else if (code !== '') {
                 msg.textContent = 'קוד לא תקין';
-                msg.className = 'coupon-msg error';
+                msg.style.color = 'red';
             }
         }
 
@@ -550,17 +543,14 @@
             const phone = document.getElementById('phone').value;
             const materialLink = document.getElementById('material_link').value;
             const logoLink = document.getElementById('logo-input').value;
-            const notes = document.getElementById('notes').value;
 
-            let message = `*היי, אשמח להזמין חבילה ב-Cut!* 👋\n\n`;
+            let message = `*שלום Cut, אשמח להזמין חבילה:* 👋\n\n`;
             message += `📦 *מסלול:* ${package}\n`;
             message += `👤 *שם:* ${name}\n`;
             if(phone) message += `📱 *טלפון:* ${phone}\n`;
-            
             if(materialLink) message += `🔗 *חומרים:* ${materialLink}\n`;
             if (logoLink) message += `🎨 *לוגו:* ${logoLink}\n`;
             if (activeCoupon) message += `🎁 *הטבה:* ${activeCoupon}\n`;
-            if (notes) message += `📝 *הערות:* ${notes}\n`;
 
             window.open(`https://wa.me/${MY_PHONE_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         }
